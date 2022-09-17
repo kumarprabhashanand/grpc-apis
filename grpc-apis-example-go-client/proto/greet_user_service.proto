@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.grpc.api.example;
+
+option java_multiple_files = true;
+option java_package = "com.grpc.api.example.greet.service";
+option go_package = "./pb";
+
+import "user_message.proto";
+
+message GreetUserRequest {
+    User user = 1;
+}
+
+message GreetUserResponse {
+    string greetMessage = 1;
+}
+
+service GreetUserService {
+    rpc GreetUser_Unary(GreetUserRequest) returns (GreetUserResponse) {};
+    rpc GreetUser_ServerStreaming(GreetUserRequest) returns (stream GreetUserResponse) {};
+    rpc GreetUser_ClientStreaming(stream GreetUserRequest) returns (GreetUserResponse) {};
+    rpc GreetUser_BiDirectionalStreaming(stream GreetUserRequest) returns (stream GreetUserResponse) {};
+}

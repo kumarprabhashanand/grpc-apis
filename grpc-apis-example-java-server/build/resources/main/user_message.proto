@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package com.grpc.api.example;
+
+option java_multiple_files = true;
+option java_package = "com.grpc.api.example.greet.model";
+option go_package = "./pb";
+
+message User {
+    string firstName = 1;
+    string lastName = 2;
+    optional uint32 age = 3;
+}
